@@ -1,6 +1,7 @@
 package chuli;
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Test2{
 	public static void main(String args[]) {	
@@ -17,8 +18,15 @@ public class Test2{
 		Student stu1=new Student(a,b,c,d);
 		File sourceFile = new File("B.txt");
 		File targetFile = new File("A.txt");
+		System.out.println("查找某一汉字的出现次数");
+		char ch =  sacn2.next().charAt(0);
+		
 		char[] z=new char[7];
+		char[] x=new char[1024];
+		boolean panduan;
 		String w;
+		int i=0;
+		int m=0;
 		w=stu1.informationWrite();
 		Reader in=null;
 		try {
@@ -28,6 +36,12 @@ public class Test2{
 			int biao=0;
 			out.write(w);
 			while((n=in.read(z))!=-1) {
+				for(;i<=6;i++) {
+					if(z[i]==ch) {
+						m++;
+					}
+				}
+				i=0;
 				biao++;
 		    	out.write(z);
 				if(biao%2==0) {
@@ -39,6 +53,7 @@ public class Test2{
 			}
 			out.flush();
 			out.close();
+			
 		}
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -56,5 +71,6 @@ public class Test2{
 				e.printStackTrace();
 			}
 		}
+		System.out.println(ch+"出现的次数为"+m+"次");
 	}
 }
